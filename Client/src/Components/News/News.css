@@ -1,95 +1,111 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Raleway:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Roboto:wght@300;400;500&display=swap");
 
 /* General News Section */
 .News-section {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
+  padding: 60px 20px;
+  background-color: #e3e8e7; /* Slight parchment color */
   text-align: center;
+  border-top: 3px solid #7a5c45; /* Subtle border for elegance */
+  border-bottom: 3px solid #7a5c45;
 }
 
 /* Title & Subtitle */
 .News-title {
-  font-size: 3rem;
-  font-weight: 300;
-  color: #7a2e19;
-  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #3c2f1e; /* Dark, earthy tone for the title */
+  font-family: 'Crimson Pro', serif;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .News-subtitle {
-  font-size: 18px;
-  color: #5a4f42;
-  max-width: 600px;
+  font-size: 16px;
+  color: #6a4f35; /* Subdued dark brown */
+  font-family: 'Roboto', sans-serif;
+  max-width: 650px;
   margin: 0 auto 30px;
+  line-height: 1.5;
 }
 
 /* News Card */
 .News-card {
-  border: none;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d1c1a1; /* A soft border for the cards */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  background: #fffaf1;
+  background: #fff9e6; /* Warm, light background */
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .News-card:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
 }
 
 /* News Image */
 .News-image {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  height: 250px; /* Set a fixed height for the image container */
+  object-fit: contain; /* Ensures the full image is visible without cropping */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  object-position: center center; /* Aligns the image to the center */
 }
 
 /* News Title */
 .News-titles {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  color: #7a2e19;
+  color: #7a5c45; /* Rich, historical color */
   margin-top: 10px;
+  font-family: 'Crimson Pro', serif;
 }
 
 /* Short Description */
 .News-shortDesc {
-  font-size: 14px;
-  color: #555;
+  font-size: 15px;
+  color: #4e4e4e;
   padding: 0 15px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
 }
 
 /* Read More Button */
 .News-card button {
-  background-color: #7a2e19;
+  background-color: #7a5c45; /* Historical brown */
   color: white;
   border: none;
   padding: 10px 20px;
   font-size: 1rem;
-  font-family: "Garamond", serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 5px;
   margin-bottom: 15px;
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .News-card button:hover {
-  background-color: #5d2112;
+  background-color: #5a3b2b; /* Darker shade on hover */
 }
 
 /* Modal Styling */
 .modal-content {
   border-radius: 10px;
   padding: 20px;
+  background: #f9f4e6; /* Subtle vintage background */
+  border: 1px solid #d1c1a1;
 }
 
 .modal-title {
   font-size: 24px;
   font-weight: bold;
-  color: #7a2e19;
+  color: #3c2f1e;
+  font-family: 'Crimson Pro', serif;
 }
 
 .modal-body {
   text-align: left;
+  font-family: 'Roboto', sans-serif;
 }
 
 .modal-image {
@@ -97,26 +113,23 @@
   height: auto;
   border-radius: 5px;
   margin-bottom: 15px;
+  filter: sepia(0.4); /* Adds a vintage effect to the image */
 }
 
 .News-fullDesc {
   font-size: 16px;
-  color: #333;
+  color: #4e4e4e;
   line-height: 1.6;
 }
 
 /* Responsive Design */
 @media (max-width: 992px) {
   .News-title {
-    font-size: 28px;
+    font-size: 2rem;
   }
 
   .News-subtitle {
-    font-size: 16px;
-  }
-
-  .News-title {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .News-shortDesc {
@@ -130,11 +143,11 @@
 
 @media (max-width: 768px) {
   .News-title {
-    font-size: 26px;
+    font-size: 1.8rem;
   }
 
   .News-subtitle {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .News-image {
@@ -152,7 +165,7 @@
   }
 
   .News-title {
-    font-size: 24px;
+    font-size: 1.6rem;
   }
 
   .News-card {

@@ -1,23 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Handle scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setShowNavbar(false); // Scrolling down
+      } else {
+        setShowNavbar(true); // Scrolling up
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${showNavbar ? "navbar-show" : "navbar-hide"}`}>
       <div className="nav-container">
-        {/* Logo */}
         <h2 className="logo mt-2">Rudra Arts & Handicrafts</h2>
 
-        {/* Hamburger Icon */}
         <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FiX /> : <FiMenu />}
         </div>
 
-        {/* Navigation Links */}
         <ul className={`nav-links ${isOpen ? "open" : ""} mt-3`}>
           <li>
             <Link to="/" onClick={() => setIsOpen(false)}>

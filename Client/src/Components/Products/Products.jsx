@@ -1,20 +1,34 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Product.css";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Fetch products data
   useEffect(() => {
-    // Fetch product data
-    fetch("https://rudra-arts-backend-repo.onrender.com/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Error fetching products:", err));
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "https://rudra-arts-backend-repo.onrender.com/api/products"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
   }, []);
 
+  // Send WhatsApp message for the product
   const sendWhatsAppMessage = async (productId) => {
     try {
       const response = await fetch(
@@ -30,59 +44,51 @@ const Product = () => {
     }
   };
 
+  // Display loading spinner if data is being fetched
+  if (loading) {
+    return (
+      <div className="loading">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="heritage-product-section">
-      <Container className="mt-5">
-        {/* Section Title */}
-        <Row className="justify-content-center text-center">
-          <Col md={8}>
-            <h1 className="heritage-product-title">Timeless Artifacts</h1>
-            <p className="heritage-product-subtitle">
-              Reliving History Through Every Creation
-            </p>
-          </Col>
-        </Row>
+    <div className="product-container">
+      {/* Section Title */}
+      <div className="product-section-title">
+        <h3>Timeless Artifacts</h3>
+        <p>Reliving History Through Every Creation</p>
+      </div>
 
-        {/* Product Cards */}
-        <Row>
-          {products.map((product) => (
-            <Col md={3} sm={6} xs={12} key={product.id} className="mb-4">
-              <Card className="heritage-product-card">
-                <Card.Img
-                  variant="top"
-                  src={product.product_image}
-                  className="heritage-product-image"
-                />
-                <Card.Body className="text-center">
-                  <Card.Title className="heritage-product-name">
-                    {product.product_name}
-                  </Card.Title>
-                  <Card.Text className="heritage-product-description">
-                    {product.product_description}
-                  </Card.Text>
-                  <span className="heritage-product-price">
-                    {product.product_price}
-                  </span>
-                  <Button
-                    variant="success"
-                    className="mt-2"
-                    onClick={() => sendWhatsAppMessage(product._id)}
-                  >
-                    Buy Now
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+      {/* Product Grid */}
+      <div className="product-grid">
+        {products.map((product) => (
+          <div className="product-card" key={product.id}>
+            <img
+              src={product.product_image}
+              alt={product.product_name}
+              className="product-image"
+            />
+            <div className="product-details">
+              <h4>{product.product_name}</h4>
+              <p>{product.product_description}</p>
+              <span className="product-price">₹ {product.product_price}</span>
+              <button
+                className="contact-button"
+                onClick={() => sendWhatsAppMessage(product._id)}
+              >
+                More Details
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        {/* See More Button */}
-        <div className="text-center mt-4">
-          <Button variant="outline-dark" onClick={() => navigate("/products")}>
-            See More
-          </Button>
-        </div>
-      </Container>
+      {/* See More Button */}
+      <div className="see-more-button">
+        <button onClick={() => navigate("/products")}>See More</button>
+      </div>
     </div>
   );
 };

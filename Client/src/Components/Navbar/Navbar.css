@@ -38,6 +38,16 @@
   text-transform: uppercase;
 }
 
+.navbar-show {
+  top: 0;
+  transition: top 0.3s ease-in-out;
+}
+
+.navbar-hide {
+  top: -100px;
+  transition: top 0.3s ease-in-out;
+}
+
 .nav-links {
   display: flex;
   list-style: none;

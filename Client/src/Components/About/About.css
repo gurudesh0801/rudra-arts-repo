@@ -1,5 +1,9 @@
 .about-us-section {
-  background-color: #f5efe6;
+  background-image: url('../../assets/images/about-bg.jpg'); /* Replace with your actual image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   padding-top: calc(
     30vh - 80px
   ); /* Adjusting to ensure hero section fills viewport */
