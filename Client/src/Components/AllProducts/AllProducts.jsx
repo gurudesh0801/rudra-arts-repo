@@ -1,19 +1,7 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-  Box,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
+import React from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./AllProduct.css";
 import p1 from "../../assets/images/p1.jpg";
 import p2 from "../../assets/images/p2.jpg";
 import p3 from "../../assets/images/p3.jpg";
@@ -82,163 +70,65 @@ const productCategories = [
 
 const AllProducts = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  // Handle category selection
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
-
-  // Filter products based on selected category
-  const filteredProducts =
-    selectedCategory === "All"
-      ? productCategories.flatMap((category) => category.products)
-      : productCategories.find(
-          (category) => category.category === selectedCategory
-        )?.products || [];
 
   return (
-    <Box sx={{ py: 5, backgroundColor: "#f4f4f4" }}>
-      <Container>
+    <div className="heritage-product-section">
+      <Container className="mt-5">
         {/* Section Title */}
-        <Box textAlign="center" mb={5}>
-          <Typography
-            variant="h3"
-            gutterBottom
-            sx={{ fontFamily: "Georgia, serif", color: "#3E2723" }}
-          >
-            Explore All Collections
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ fontFamily: "Georgia, serif", color: "#5D4037" }}
-          >
-            Find the finest handcrafted artifacts from history.
-          </Typography>
-        </Box>
+        <Row className="justify-content-center text-center">
+          <Col md={8}>
+            <h1 className="heritage-product-title">Explore All Collections</h1>
+            <p className="heritage-product-subtitle">
+              Find the finest handcrafted artifacts from history.
+            </p>
+          </Col>
+        </Row>
 
-        {/* Category Filter */}
-        <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
-          <FormControl variant="outlined" sx={{ minWidth: 200 }}>
-            <InputLabel id="category-select-label">Category</InputLabel>
-            <Select
-              labelId="category-select-label"
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-              label="Category"
-              fullWidth
-            >
-              <MenuItem value="All">All</MenuItem>
-              {productCategories.map((category, index) => (
-                <MenuItem key={index} value={category.category}>
-                  {category.category}
-                </MenuItem>
+        {/* Full Product List */}
+        {productCategories.map((category, index) => (
+          <div key={index} className="category-section mt-5">
+            <h2 className="category-title">{category.category}</h2>
+            <Row>
+              {category.products.map((product) => (
+                <Col md={4} key={product.id} className="mb-4">
+                  <Card className="heritage-product-card">
+                    <Card.Img
+                      variant="top"
+                      src={product.image}
+                      className="heritage-product-image"
+                    />
+                    <Card.Body className="text-center">
+                      <Card.Title className="heritage-product-name">
+                        {product.name}
+                      </Card.Title>
+                      <Card.Text className="heritage-product-description">
+                        {product.description}
+                      </Card.Text>
+                      <span className="heritage-product-price">
+                        {product.price}
+                      </span>
+                      <Button
+                        variant="dark"
+                        className="heritage-buy-button mt-3"
+                      >
+                        Buy Now
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
               ))}
-            </Select>
-          </FormControl>
-        </Box>
-
-        {/* Product Grid */}
-        <Grid container spacing={4}>
-          {filteredProducts.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product.id}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  borderRadius: 3,
-                  boxShadow: "4px 4px 15px rgba(0, 0, 0, 0.1)",
-                  backgroundColor: "#fdf8f3",
-                  border: "1px solid #D7CCC8", // Light brown border for a vintage feel
-                  transition: "transform 0.3s ease-in-out",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: "0px 8px 25px rgba(0, 0, 0, 0.2)",
-                  },
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image={product.image}
-                  alt={product.name}
-                  sx={{ objectFit: "cover", borderRadius: "8px 8px 0 0" }}
-                />
-                <CardContent>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontFamily: "Georgia, serif",
-                      color: "#3E2723",
-                      fontWeight: "bold",
-                      marginBottom: 1,
-                    }}
-                  >
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      fontFamily: "Georgia, serif",
-                      color: "#5D4037",
-                      marginBottom: 1,
-                      fontStyle: "italic",
-                    }}
-                  >
-                    {product.description}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "#3E2723",
-                      fontWeight: "bold",
-                      fontSize: "1.2rem",
-                      marginBottom: 1,
-                    }}
-                  >
-                    {product.price}
-                  </Typography>
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      borderColor: "#3E2723",
-                      color: "#3E2723",
-                      fontFamily: "Georgia, serif",
-                      fontWeight: "bold",
-                      "&:hover": {
-                        backgroundColor: "#3E2723",
-                        color: "#fff",
-                      },
-                    }}
-                    fullWidth
-                  >
-                    Buy Now
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+            </Row>
+          </div>
+        ))}
 
         {/* Back to Home Button */}
-        <Box textAlign="center" mt={4}>
-          <Button
-            variant="outlined"
-            sx={{
-              fontFamily: "Georgia, serif",
-              color: "#3E2723",
-              borderColor: "#3E2723",
-              "&:hover": {
-                backgroundColor: "#3E2723",
-                color: "#fff",
-              },
-            }}
-            onClick={() => navigate("/")}
-          >
+        <div className="text-center mt-4">
+          <Button variant="outline-dark" onClick={() => navigate("/")}>
             Back to Home
           </Button>
-        </Box>
+        </div>
       </Container>
-    </Box>
+    </div>
   );
 };
 
