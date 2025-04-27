@@ -12,7 +12,7 @@ const Product = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://rudra-arts-backend-repo.onrender.com/api/products"
+          `${import.meta.env.BASE_URL_PRODUCTION}/api/products`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -32,7 +32,9 @@ const Product = () => {
   const sendWhatsAppMessage = async (productId) => {
     try {
       const response = await fetch(
-        `https://rudra-arts-backend-repo.onrender.com/api/products/${productId}/whatsapp-message`
+        `${
+          import.meta.env.BASE_URL_PRODUCTION
+        }/api/products/${productId}/whatsapp-message`
       );
       const data = await response.json();
 

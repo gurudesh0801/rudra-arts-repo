@@ -41,10 +41,13 @@ const AddProduct = ({ onProductAdded }) => {
         formData.append(key, value);
       }
 
-      const res = await fetch("http://localhost:5000/api/products/add", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/add`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to add product");

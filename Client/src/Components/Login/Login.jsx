@@ -26,14 +26,17 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // This enables sending and receiving cookies
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(
+        `${import.meta.env.BASE_URL_PRODUCTION}/api/admin/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // This enables sending and receiving cookies
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await res.json();
 

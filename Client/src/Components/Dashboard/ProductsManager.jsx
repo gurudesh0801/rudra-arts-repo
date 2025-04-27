@@ -36,7 +36,9 @@ const ProductManager = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/products");
+      const res = await fetch(
+        `${import.meta.env.BASE_URL_PRODUCTION}/api/products`
+      );
       const data = await res.json();
       setProducts(data);
     } catch (err) {
@@ -51,9 +53,12 @@ const ProductManager = () => {
       return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to delete product");
@@ -87,7 +92,9 @@ const ProductManager = () => {
   const handleEditSave = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/products/${editProduct._id}`,
+        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/${
+          editProduct._id
+        }`,
         {
           method: "PUT",
           headers: {

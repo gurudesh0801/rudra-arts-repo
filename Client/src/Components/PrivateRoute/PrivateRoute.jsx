@@ -8,9 +8,12 @@ const PrivateRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/admin/check-auth", {
-          credentials: "include", // send the cookie
-        });
+        const res = await fetch(
+          `${import.meta.env.BASE_URL_PRODUCTION}/api/admin/check-auth`,
+          {
+            credentials: "include", // send the cookie
+          }
+        );
 
         const data = await res.json();
         setIsAuthenticated(data.authenticated);
