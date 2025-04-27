@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allows all origins
+    origin: ["http://localhost:5173", "https://rudra-arts.vercel.app"], // Allows all origins
     credentials: true, // Allows cookies to be sent
   })
 );
