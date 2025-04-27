@@ -23,9 +23,9 @@ exports.adminLogin = async (req, res) => {
 
     // Step 4: Set the token in a secure, HttpOnly cookie
     res.cookie("adminToken", token, {
-      httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-      secure: process.env.NODE_ENV === "production", // Only set for HTTPS in production
-      sameSite: "strict", // Helps prevent CSRF
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
