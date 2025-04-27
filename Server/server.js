@@ -2,11 +2,18 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allows all origins
+    credentials: true, // Allows cookies to be sent
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // MongoDB Connection
 mongoose

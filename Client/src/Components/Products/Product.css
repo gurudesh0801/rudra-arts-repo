@@ -3,7 +3,7 @@
 /* Product Container */
 .product-container {
   padding: 50px 20px;
-  background-color: #f9f4e7;
+  background-color: #ffffff;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -21,7 +21,7 @@
 
 .product-section-title h3 {
   font-size: 2.5rem;
-  color: #3e2723;
+  color: #4a3d2f;
   font-family: "Georgia", serif;
   text-transform: uppercase;
 }
@@ -36,24 +36,25 @@
 /* Product Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Increased from 250px to 320px */
   gap: 20px;
   justify-content: center;
   grid-auto-rows: minmax(250px, auto);
   width: 100%;
-  max-width: 1200px; /* Limit the grid width for larger screens */
-  padding: 0 10px;
+  max-width: 1400px; /* Slightly larger for big screens */
+  padding: 0 30px;
 }
 
 /* Product Card */
 .product-card {
-  background-color: #fff;
-  border: 2px solid #d7ccc8;
+  background-color: #6e2c14;
+  border: 2px solid #D4AF37;
   border-radius: 12px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
 }
+
 
 .product-card:hover {
   transform: translateY(-5px);
@@ -72,23 +73,24 @@
 
 .product-details h4 {
   font-size: 1.4rem;
-  color: #3e2723;
-  font-weight: bold;
+  text-align: left;
+  color: #ffffff;
   margin-bottom: 10px;
   text-transform: capitalize;
 }
 
 .product-details p {
   font-size: 1rem;
-  color: #5d4037;
+  text-align: left;
+  color: #ffffff;
   font-style: italic;
   margin-bottom: 15px;
 }
 
 .product-price {
   font-size: 1.3rem;
-  color: #3e2723;
-  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
   margin-bottom: 20px;
   display: block;
 }
@@ -97,8 +99,8 @@
   width: 100%;
   padding: 12px;
   background-color: transparent;
-  color: #291515;
-  border: 2px solid #3e2723;
+  color: #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -116,7 +118,7 @@
 
 .see-more-button button {
   padding: 12px 25px;
-  background-color: #3e2723;
+  background-color: #8C391B;
   color: #fff;
   border: none;
   font-weight: bold;

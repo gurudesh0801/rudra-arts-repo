@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import "./News.css"; // Custom styles
 import img1 from "../../assets/images/blog1.jpg";
 import img2 from "../../assets/images/blog2.jpg";
 import img3 from "../../assets/images/blog3.jpg";
+import aboutBg from "../../assets/images/about-bg.jpg";
+import cardBg from "../../assets/images/card-bg2.png";
+import { useState } from "react";
 
 // News Data
 const NewsData = [
@@ -40,78 +40,114 @@ const News = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedNews, setSelectedNews] = useState(null);
 
-  // Handle modal open
-  const handleShow = (News) => {
-    setSelectedNews(News);
+  const handleShow = (news) => {
+    setSelectedNews(news);
     setShowModal(true);
   };
 
-  // Handle modal close
   const handleClose = () => {
     setShowModal(false);
     setSelectedNews(null);
   };
 
   return (
-    <div className="News-section">
-      <Container className="mt-5">
-        <Row className="justify-content-center text-center mt-3">
-          <Col md={8}>
-            <h1 className="News-title">Rudra Arts News</h1>
-            <p className="News-subtitle">
-              Discover the rich heritage behind handcrafted art
-            </p>
-          </Col>
-        </Row>
+    <div
+      className="py-16 min-h-screen bg-fixed bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${aboutBg})`,
+      }}
+    >
+      <div className="container mx-auto px-4">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h1
+            className="text-4xl font-bold text-[#4a3d2f] mb-4"
+            style={{
+              fontFamily: "Georgia, serif",
+              fontSize: "2.5rem",
+              fontWeight: 600,
+            }}
+          >
+            RUDRA ARTS NEWS
+          </h1>
+          <p className="text-[#4a3d2f] text-lg">
+            Discover the rich heritage behind handcrafted art
+          </p>
+        </div>
 
-        {/* News List */}
-        <Row className="mt-5">
-          {NewsData.map((News) => (
-            <Col md={4} key={News.id} className="mb-4">
-              <Card className="News-card">
-                <Card.Img
-                  variant="top"
-                  src={News.image}
-                  className="News-image"
-                />
-                <Card.Body>
-                  <Card.Title className="News-titles">{News.title}</Card.Title>
-                  <Card.Text className="News-shortDesc">
-                    {News.shortDesc}
-                  </Card.Text>
-                  <Button variant="dark" onClick={() => handleShow(News)}>
-                    Read More
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
+        {/* News Grid */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {NewsData.map((news) => (
+            <div
+              key={news.id}
+              className="relative h-[500px] overflow-hidden bg-center bg-cover flex flex-col p-8 text-center text-[#4a3d2f] transition-transform duration-300 "
+              style={{
+                backgroundImage: `url(${cardBg})`, // Fixed card background
+              }}
+            >
+              {/* Content */}
+              <div className="flex flex-col items-center justify-center h-full ">
+                {/* News Image */}
+                <div className="w-32 h-32 mb-6">
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="object-contain w-full h-full"
+                  />
+                </div>
+
+                {/* News Text */}
+                <h2 className="text-2xl font-bold mb-4">{news.title}</h2>
+                <p className="text-base mb-6">{news.shortDesc}</p>
+                <button
+                  onClick={() => handleShow(news)}
+                  className="bg-[#8C391B] text-white px-8 py-3 rounded hover:bg-[#732f16] transition"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
           ))}
-        </Row>
-      </Container>
+        </div>
 
-      {/* Popup Modal */}
-      <Modal show={showModal} onHide={handleClose} centered>
-        {selectedNews && (
-          <>
-            <Modal.Header closeButton>
-              <Modal.Title>{selectedNews.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <img
-                src={selectedNews.image}
-                alt={selectedNews.title}
-                className="modal-image"
-              />
-              <p className="News-fullDesc mt-3">{selectedNews.fullDesc}</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </>
+        {/* Modal */}
+        {showModal && selectedNews && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+            <div className="bg-white rounded-lg overflow-hidden max-w-lg w-full relative">
+              {/* Close Button */}
+              <button
+                onClick={handleClose}
+                className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl"
+              >
+                &times;
+              </button>
+
+              {/* Modal Content */}
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  {selectedNews.title}
+                </h2>
+                <img
+                  src={selectedNews.image}
+                  alt={selectedNews.title}
+                  className="w-full h-64 object-contain rounded mb-4"
+                />
+                <p className="text-gray-700">{selectedNews.fullDesc}</p>
+              </div>
+
+              {/* Footer */}
+              <div className="p-4 flex justify-end">
+                <button
+                  onClick={handleClose}
+                  className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-900 transition"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         )}
-      </Modal>
+      </div>
     </div>
   );
 };

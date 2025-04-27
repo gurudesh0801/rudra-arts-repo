@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Element } from "react-scroll";
 
@@ -12,8 +11,21 @@ import AllProducts from "./Components/AllProducts/AllProducts";
 import News from "./Components/News/News";
 
 import "./App.css";
+import Login from "./Components/Login/Login";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
+import ProductManager from "./Components/Dashboard/ProductsManager";
+import ScrollToTopButton from "./Components/ScrollToTopButton/ScrollToTopButton"; // Import ScrollToTopButton
+import AddProduct from "./Components/Dashboard/AddProduct";
 
 const App = () => {
+  useEffect(() => {
+    const token = Cookies.get();
+    console.log(token);
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -76,7 +88,43 @@ const App = () => {
             </Layout>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <Login />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/products"
+          element={
+            <PrivateRoute>
+              <ProductManager />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/add-products"
+          element={
+            <PrivateRoute>
+              <AddProduct />
+            </PrivateRoute>
+          }
+        />
       </Routes>
+
+      {/* Add the ScrollToTopButton below all routes */}
+      <ScrollToTopButton />
     </Router>
   );
 };

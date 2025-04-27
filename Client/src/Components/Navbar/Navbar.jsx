@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiSearch, FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -57,6 +57,11 @@ const Navbar = () => {
           <li>
             <Link to="/contact" onClick={() => setIsOpen(false)}>
               Contact
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={() => setIsOpen(false)}>
+              Login
             </Link>
           </li>
         </ul>
