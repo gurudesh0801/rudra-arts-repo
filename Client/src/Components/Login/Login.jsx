@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.BASE_URL_PRODUCTION}/api/admin/login`,
+        `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/admin/login`,
         {
           method: "POST",
           headers: {

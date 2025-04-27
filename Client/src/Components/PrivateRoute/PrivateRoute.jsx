@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.BASE_URL_PRODUCTION}/api/admin/check-auth`,
+          `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/admin/check-auth`,
           {
             credentials: "include", // send the cookie
           }

@@ -37,7 +37,7 @@ const ProductManager = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.BASE_URL_PRODUCTION}/api/products`
+        `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/products`
       );
       const data = await res.json();
       setProducts(data);
@@ -54,7 +54,7 @@ const ProductManager = () => {
 
     try {
       const res = await fetch(
-        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/${id}`,
+        `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/products/${id}`,
         {
           method: "DELETE",
         }
@@ -92,7 +92,7 @@ const ProductManager = () => {
   const handleEditSave = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/${
+        `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/products/${
           editProduct._id
         }`,
         {

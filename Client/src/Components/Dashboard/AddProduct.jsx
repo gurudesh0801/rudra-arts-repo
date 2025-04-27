@@ -42,7 +42,7 @@ const AddProduct = ({ onProductAdded }) => {
       }
 
       const res = await fetch(
-        `${import.meta.env.BASE_URL_PRODUCTION}/api/products/add`,
+        `${import.meta.env.VITE_BASE_URL_PRODUCTION}/api/products/add`,
         {
           method: "POST",
           body: formData,
