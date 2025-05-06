@@ -114,7 +114,7 @@ const Footer = () => {
         <span className="text-white text-xs">
           Design & Develop by{" "}
           <a
-            href="https://powerhousetechsolutions.com"
+            href="https://www.instagram.com/projectpowerhouseofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
             rel="noreferrer"
             className="hover:underline text-green-400"
