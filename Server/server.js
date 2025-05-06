@@ -14,6 +14,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use("/uploads", express.static("uploads"));
 
 // MongoDB Connection
 mongoose
@@ -31,6 +32,8 @@ const servicesRoutes = require("./routes/services");
 const contactRoutes = require("./routes/contact");
 const adminRoutes = require("./routes/admin");
 const productRoutes = require("./routes/products");
+const blogRoutes = require("./routes/blog");
+const newsRoutes = require("./routes/news");
 
 // Route usage
 app.use("/api/gallery", galleryRoutes);
@@ -39,6 +42,8 @@ app.use("/api/services", servicesRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/news", newsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Rudra Arts API running with MongoDB");
