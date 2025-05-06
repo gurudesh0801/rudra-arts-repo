@@ -1,9 +1,23 @@
+import { useState } from "react";
+import {
+  Grid,
+  Typography,
+  Button,
+  Card,
+  CardMedia,
+  CardContent,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Container,
+  Box,
+} from "@mui/material";
+
 import img1 from "../../assets/images/blog1.jpg";
 import img2 from "../../assets/images/blog2.jpg";
 import img3 from "../../assets/images/blog3.jpg";
 import aboutBg from "../../assets/images/about-bg.jpg";
-import cardBg from "../../assets/images/card-bg2.png";
-import { useState } from "react";
 
 // News Data
 const NewsData = [
@@ -51,104 +65,124 @@ const News = () => {
   };
 
   return (
-    <div
-      className="py-16 min-h-screen bg-fixed bg-cover bg-center"
-      style={{
+    <Box
+      sx={{
+        py: 8,
+        minHeight: "100vh",
         backgroundImage: `url(${aboutBg})`,
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
       }}
     >
-      <div className="container mx-auto px-4">
+      <Container>
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h1
-            className="text-4xl font-bold text-[#4a3d2f] mb-4"
-            style={{
-              fontFamily: "Georgia, serif",
-              fontSize: "2.5rem",
-              fontWeight: 600,
-            }}
+        <Box textAlign="center" mb={6}>
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            fontWeight={600}
+            color="#4a3d2f"
           >
             RUDRA ARTS NEWS
-          </h1>
-          <p className="text-[#4a3d2f] text-lg">
+          </Typography>
+          <Typography variant="h6" color="#4a3d2f">
             Discover the rich heritage behind handcrafted art
-          </p>
-        </div>
+          </Typography>
+        </Box>
 
         {/* News Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <Grid container spacing={4}>
           {NewsData.map((news) => (
-            <div
-              key={news.id}
-              className="relative h-[500px] overflow-hidden bg-center bg-cover flex flex-col p-8 text-center text-[#4a3d2f] transition-transform duration-300 "
-              style={{
-                backgroundImage: `url(${cardBg})`, // Fixed card background
-              }}
-            >
-              {/* Content */}
-              <div className="flex flex-col items-center justify-center h-full ">
-                {/* News Image */}
-                <div className="w-32 h-32 mb-6">
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="object-contain w-full h-full"
-                  />
-                </div>
-
-                {/* News Text */}
-                <h2 className="text-2xl font-bold mb-4">{news.title}</h2>
-                <p className="text-base mb-6">{news.shortDesc}</p>
-                <button
-                  onClick={() => handleShow(news)}
-                  className="bg-[#8C391B] text-white px-8 py-3 rounded hover:bg-[#732f16] transition"
-                >
-                  Read More
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Modal */}
-        {showModal && selectedNews && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
-            <div className="bg-white rounded-lg overflow-hidden max-w-lg w-full relative">
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl"
+            <Grid item xs={12} sm={6} md={4} key={news.id}>
+              <Card
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  boxShadow: 3,
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  bgcolor: "white",
+                  textAlign: "center",
+                  p: 2,
+                }}
               >
-                &times;
-              </button>
+                <CardMedia
+                  component="img"
+                  image={news.image}
+                  alt={news.title}
+                  sx={{
+                    width: "100%",
+                    maxHeight: 250,
+                    objectFit: "contain", // Show full image without cropping
+                    mt: 1,
+                    mb: 1,
+                  }}
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    fontWeight="bold"
+                    color="#4a3d2f"
+                  >
+                    {news.title}
+                  </Typography>
+                  <Typography variant="body2" paragraph color="#4a3d2f">
+                    {news.shortDesc}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      mt: 2,
+                      backgroundColor: "#8C391B",
+                      "&:hover": { backgroundColor: "#732f16" },
+                    }}
+                    onClick={() => handleShow(news)}
+                  >
+                    Read More
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
-              {/* Modal Content */}
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  {selectedNews.title}
-                </h2>
-                <img
+        {/* Modal Dialog */}
+        <Dialog open={showModal} onClose={handleClose} maxWidth="sm" fullWidth>
+          {selectedNews && (
+            <>
+              <DialogTitle>{selectedNews.title}</DialogTitle>
+              <DialogContent dividers>
+                <Box
+                  component="img"
                   src={selectedNews.image}
                   alt={selectedNews.title}
-                  className="w-full h-64 object-contain rounded mb-4"
+                  sx={{
+                    width: "100%",
+                    height: 250,
+                    objectFit: "contain",
+                    mb: 2,
+                  }}
                 />
-                <p className="text-gray-700">{selectedNews.fullDesc}</p>
-              </div>
-
-              {/* Footer */}
-              <div className="p-4 flex justify-end">
-                <button
+                <Typography variant="body1">{selectedNews.fullDesc}</Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button
                   onClick={handleClose}
-                  className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-900 transition"
+                  variant="contained"
+                  color="primary"
                 >
                   Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+                </Button>
+              </DialogActions>
+            </>
+          )}
+        </Dialog>
+      </Container>
+    </Box>
   );
 };
 

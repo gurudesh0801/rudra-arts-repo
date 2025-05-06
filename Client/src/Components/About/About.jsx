@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./About.css"; // Custom styles for historical design
 
@@ -8,14 +7,14 @@ const AboutUs = () => {
       <Container className="">
         <Row className="justify-content-center text-center">
           <Col md={8}>
-            <h1 className="about-title">Our Legacy</h1>
+            <h1 className="about-title">आमचा शाही वारसा</h1>
             <p className="about-subtitle">
               A Journey Through Time: Building Innovation, Preserving Tradition
             </p>
           </Col>
         </Row>
 
-        <Row className="mt-5">
+        <Row className="mt-5 mx-5">
           <Col md={6}>
             <Card className="history-card">
               <Card.Body>
@@ -42,7 +41,7 @@ const AboutUs = () => {
             </Card>
           </Col>
         </Row>
-        <Row className="mt-5">
+        <Row className="mt-5 mx-5">
           <Col md={6}>
             <Card className="history-card">
               <Card.Body>

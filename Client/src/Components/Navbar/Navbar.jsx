@@ -59,11 +59,6 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-          <li>
-            <Link to="/login" onClick={() => setIsOpen(false)}>
-              Login
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
