@@ -19,6 +19,8 @@ import Cookies from "js-cookie";
 import ProductManager from "./Components/Dashboard/ProductsManager";
 import ScrollToTopButton from "./Components/ScrollToTopButton/ScrollToTopButton"; // Import ScrollToTopButton
 import AddProduct from "./Components/Dashboard/AddProduct";
+import FullAbout from "./Components/About/FullAbout";
+import FullNews from "./Components/News/FullNews";
 
 const App = () => {
   useEffect(() => {
@@ -52,7 +54,7 @@ const App = () => {
           path="/about"
           element={
             <Layout>
-              <AboutUs />
+              <FullAbout />
             </Layout>
           }
         />
@@ -68,7 +70,7 @@ const App = () => {
           path="/news"
           element={
             <Layout>
-              <News />
+              <FullNews />
             </Layout>
           }
         />

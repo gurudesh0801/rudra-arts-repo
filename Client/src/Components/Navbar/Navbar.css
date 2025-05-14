@@ -43,6 +43,19 @@
   transition: top 0.3s ease-in-out;
 }
 
+.language-dropdown {
+  margin-left: 1rem;
+}
+
+.language-select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .navbar-hide {
   top: -100px;
   transition: top 0.3s ease-in-out;
