@@ -134,7 +134,7 @@ const Product = () => {
         <Box textAlign="center" mt={6}>
           <Button
             variant="outlined"
-            onClick={() => navigate("/products")}
+            onClick={() => navigate("/Products")}
             sx={{
               borderColor: "#a0522d",
               color: "#a0522d",
