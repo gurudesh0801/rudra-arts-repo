@@ -1,10 +1,9 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "package.json",
+      "src": "vite.config.js",
       "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
+      "config": {}
     }
   ],
   "routes": [
@@ -12,5 +11,6 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "outputDirectory": "dist"
 }
