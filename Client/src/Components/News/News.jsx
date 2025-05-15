@@ -44,6 +44,15 @@ const NewsData = [
       "A comparison between wooden and metal handicrafts for your home decor.",
     isExternal: true,
   },
+  {
+    id: 4,
+    slug: "https://www.instagram.com/p/DHXxaICtlkY/?hl=en", // internal
+    title: "Wooden vs. Metal Handicrafts: Which is Better?",
+    image: img3,
+    shortDesc:
+      "A comparison between wooden and metal handicrafts for your home decor.",
+    isExternal: true,
+  },
 ];
 
 const News = () => {
@@ -69,7 +78,7 @@ const News = () => {
             fontWeight={600}
             color="#4a3d2f"
           >
-            RUDRA ARTS NEWS
+            NEWS
           </Typography>
           <Typography variant="h6" color="#4a3d2f">
             Discover the rich heritage behind handcrafted art
