@@ -70,7 +70,6 @@ const Product = () => {
             sx={{
               color: "#706D54",
               fontSize: "3rem",
-              fontFamily: "'Amita', serif",
               fontWeight: "bold",
               mb: 1,
             }}
