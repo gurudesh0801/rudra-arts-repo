@@ -75,7 +75,8 @@ const Product = () => {
               mb: 1,
             }}
           >
-            स्वराज्याची पवित्र कलाकृती
+{/*             स्वराज्याची पवित्र कलाकृती */}
+            Products
           </Typography>
           <Typography
             level="body-md"
