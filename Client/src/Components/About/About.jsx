@@ -8,7 +8,7 @@ const AboutUs = () => {
         <Row className="justify-content-center text-center">
           <Col md={8}>
 {/*             <h1 className="about-title">आमचा शाही वारसा</h1> */}
-            <h1 className="about-title">आमचा शाही वारसा</h1>
+            <h1 className="about-title">The Story Behind Rudra Arts</h1>
             <p className="about-subtitle">
               A Journey Through Time: Building Innovation, Preserving Tradition
             </p>
